@@ -1,0 +1,11 @@
+---
+- hosts: webservers
+  remote_user: root
+
+  tasks:
+  - name: ensure java is installed
+    action: command yum install java-1.8.0-openjdk.x86_64 -y
+  - name: Transfer the script
+    copy: src=shell.sh dest=/home/vagrant mode=0777
+  - name: Execute the script
+    command: sh /home/vagrant/shell.sh
